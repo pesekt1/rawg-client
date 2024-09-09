@@ -47,8 +47,10 @@ function App() {
           Aside
         </GridItem>
       </Show>
-      <GridItem bg="green.300" area={"main"}>
-        Main
+      <GridItem area={"main"}>
+        {games.map((game) => (
+          <li key={game.id}>{game.name}</li>
+        ))}
       </GridItem>
     </Grid>
   );
