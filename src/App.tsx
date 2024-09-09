@@ -1,14 +1,7 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
-import axios from "axios";
 import { useEffect, useState } from "react";
-
-const apiClient = axios.create({
-  baseURL: "https://api.rawg.io/api",
-  params: {
-    key: import.meta.env.VITE_API_KEY,
-  },
-});
+import apiClient from "./services/api-client";
 
 interface Game {
   id: number;
