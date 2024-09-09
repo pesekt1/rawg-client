@@ -1,29 +1,8 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
-import { useEffect, useState } from "react";
-import apiClient from "./services/api-client";
-
-interface Game {
-  id: number;
-  name: string;
-}
-
-interface GamesResponse {
-  count: number;
-  results: Game[];
-}
+import GameGrid from "./components/GameGrid";
 
 function App() {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    apiClient
-      .get<GamesResponse>("/games")
-      .then((response) => setGames(response.data.results))
-      .catch((error) => setError(error.message));
-  }, []);
-
   return (
     <Grid
       templateAreas={{
@@ -41,9 +20,7 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area={"main"}>
-        {games.map((game) => (
-          <li key={game.id}>{game.name}</li>
-        ))}
+        <GameGrid />
       </GridItem>
     </Grid>
   );
