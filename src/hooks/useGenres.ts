@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
+import useData from "./useData";
 
 export interface Genre {
   id: number;
@@ -8,27 +7,6 @@ export interface Genre {
   image_background: string;
 }
 
-interface GenresResponse {
-  count: number;
-  results: Genre[];
-}
-
-const useGenres = () => {
-  const [genres, setGenres] = useState<Genre[]>([]);
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-
-    apiClient
-      .get<GenresResponse>("/genres")
-      .then((response) => setGenres(response.data.results))
-      .catch((error) => setError(error.message))
-      .finally(() => setIsLoading(false));
-  }, []);
-
-  return { genres, error, isLoading };
-};
+const useGenres = () => useData<Genre>("/genres");
 
 export default useGenres;
