@@ -14,12 +14,26 @@ import {
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
+import { IconType } from "react-icons";
 
 interface Props {
   platforms: Platform[];
 }
 
 const PlatformIconsList = ({ platforms }: Props) => {
+  const iconMap: { [key: string]: IconType } = {
+    windows: FaWindows,
+    xbox: FaXbox,
+    playstation: FaPlaystation,
+    apple: FaApple,
+    linux: FaLinux,
+    android: FaAndroid,
+    steam: FaSteam,
+    iphone: MdPhoneIphone,
+    nintendo: SiNintendo,
+    web: BsGlobe,
+  };
+
   const getIcon = (slug: string) => {
     switch (slug) {
       case "windows":
@@ -51,6 +65,7 @@ const PlatformIconsList = ({ platforms }: Props) => {
     <HStack marginY="1">
       {platforms.map((platform) => (
         <Icon key={platform.id} as={getIcon(platform.slug)} />
+        //<Icon key={platform.id} as={iconMap[platform.slug]} />
       ))}
     </HStack>
   );
