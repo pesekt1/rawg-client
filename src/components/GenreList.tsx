@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import useGenres, { Genre } from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
+import { useState } from "react";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
@@ -16,7 +17,11 @@ interface Props {
 }
 
 const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const { data: genres, error, isLoading } = useGenres();
+
+  const displayedGenres = isExpanded ? genres : genres?.slice(0, 5);
 
   if (error) return null;
 
@@ -26,7 +31,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
     <>
       <Heading>Genres</Heading>
       <List>
-        {genres.map((genre) => (
+        {displayedGenres.map((genre) => (
           <ListItem key={genre.id} paddingY="5px">
             <HStack>
               <Image
@@ -49,6 +54,9 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
             </HStack>
           </ListItem>
         ))}
+        <Button onClick={() => setIsExpanded(!isExpanded)}>
+          {isExpanded ? "Show less" : "Show more"}
+        </Button>
       </List>
     </>
   );
