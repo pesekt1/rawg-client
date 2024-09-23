@@ -1,6 +1,7 @@
 import useData from "./useData";
 import { Genre } from "./useGenres";
 import { Platform } from "./usePlatforms";
+import { Store } from "./useStores";
 
 export interface Game {
   id: number;
@@ -12,7 +13,8 @@ export interface Game {
 
 const useGames = (
   selectedGenre: Genre | null,
-  selectedPlatform: Platform | null
+  selectedPlatform: Platform | null,
+  selectedStore: Store | null
 ) =>
   useData<Game>(
     "/games",
@@ -20,8 +22,9 @@ const useGames = (
       params: {
         genres: selectedGenre?.id,
         parent_platforms: selectedPlatform?.id,
+        stores: selectedStore?.id,
       },
     },
-    [selectedGenre?.id, selectedPlatform?.id]
+    [selectedGenre?.id, selectedPlatform?.id, selectedStore?.id]
   );
 export default useGames;
