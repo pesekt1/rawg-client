@@ -1,7 +1,6 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Menu, MenuButton, Button, MenuList, MenuItem } from "@chakra-ui/react";
-import usePlatforms from "../hooks/usePlatforms";
-import { Platform } from "../hooks/useGames";
+import usePlatforms, { Platform } from "../hooks/usePlatforms";
 
 interface Props {
   selectedPlatform: Platform | null;
