@@ -1,4 +1,4 @@
-import { HStack, Icon, Text } from "@chakra-ui/react";
+import { HStack, Icon } from "@chakra-ui/react";
 import { Platform } from "../hooks/useGames";
 
 import {
@@ -14,25 +14,25 @@ import {
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
-import { IconType } from "react-icons";
+//import { IconType } from "react-icons";
 
 interface Props {
   platforms: Platform[];
 }
 
 const PlatformIconsList = ({ platforms }: Props) => {
-  const iconMap: { [key: string]: IconType } = {
-    windows: FaWindows,
-    xbox: FaXbox,
-    playstation: FaPlaystation,
-    apple: FaApple,
-    linux: FaLinux,
-    android: FaAndroid,
-    steam: FaSteam,
-    iphone: MdPhoneIphone,
-    nintendo: SiNintendo,
-    web: BsGlobe,
-  };
+  // const iconMap: { [key: string]: IconType } = {
+  //   windows: FaWindows,
+  //   xbox: FaXbox,
+  //   playstation: FaPlaystation,
+  //   apple: FaApple,
+  //   linux: FaLinux,
+  //   android: FaAndroid,
+  //   steam: FaSteam,
+  //   iphone: MdPhoneIphone,
+  //   nintendo: SiNintendo,
+  //   web: BsGlobe,
+  // };
 
   const getIcon = (slug: string) => {
     switch (slug) {
